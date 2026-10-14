@@ -25,6 +25,7 @@ const cases = [
     slug:'project-eternal',number:'02',title:'Project Eternal',kind:'全球 UGC 挑战',brand:'Antigravity × Insta360 × CyArk × Splatica',market:'全球',period:'2026.04—07',
     subtitle:'700+ 家国际媒体报道,达目标的 7 倍',
     highlight:'2,000+ 活动报名 · 48 小时内 300 人注册 Splatica · 35 条 KOL 视频 4.5M 曝光',
+    note:'项目收录于影石 2025 年报(2026.04 发布)',
     scope:'创意机制 / 四方品牌联名 / 五渠道协同',
     summary:'以「8K 360° 实景重建 3D 高斯溅射」为核心玩法,联合四方品牌,以庞贝古城等文化遗产 3D 档案为叙事支点,把技术挑战做成全球媒体话题。',
     overview:'主导设计全球 UGC 挑战的参与机制与整体传播方案:Antigravity × Insta360 × CyArk × Splatica 四方联名,以 8K 360° 实景重建 3D 高斯溅射为核心玩法,联动 SuperSplat、80LV 及 3DGS 社区冷启动。',
@@ -33,7 +34,6 @@ const cases = [
     execution:[['冷启动','四方联名资源对齐,联动 SuperSplat、80LV 与 3DGS 社区。'],['征集推进','五渠道协同征集,社区 giveaway 机制降低参与门槛。'],['传播放大','国际媒体与 KOL 内容放大活动声量。']],
     results:[['媒体报道','700+ 家','目标 100 家的 7 倍;覆盖 The Verge、TechRadar、ANSA、PetaPixel 等'],['活动报名','2,000+','全球报名'],['平台注册','300 人','48 小时内注册 Splatica 平台'],['KOL 传播','4.5M 曝光','35 条 KOL 视频']],
     evidence:['活动主视觉与报名页','用户 3D 高斯溅射作品','媒体报道与 KOL 内容'],
-    // TODO(CV 开放槽位 2):「项目收录于公司年度报表」年份待核实,确认后加回 summary/results。
     learning:['文化遗产叙事让技术玩法具备媒体价值,是媒体报道远超目标的关键支点。','垂直社区(SuperSplat、80LV、3DGS)冷启动,比单纯投放更适合高门槛的创作型玩法。','五渠道协同加 giveaway 机制,用于降低从报名到创作的参与门槛。']
   },
   {
@@ -111,7 +111,7 @@ function mediaEl(src,label){return isVideo(src)?`<video src="${e(src)}" muted pl
 function fig(src,label,cls=''){return src?`<figure class="media-fig ${cls}" data-fig>${mediaEl(src,label)}<figcaption>${e(label)}</figcaption></figure>`:'';}
 function section(n,en,zh,body){return `<section class="content-section" id="section-${n}"><h2 class="section-title">${n} / ${en}<span>${zh}</span></h2><div>${body}</div></section>`;}
 function meta(label,val){return val?`<div><dt>${label}</dt><dd>${e(val)}</dd></div>`:'';}
-function mediaItems(c){const m=MEDIA[c.slug];return [m.hero,...m.gallery].filter(Boolean);}
+function mediaItems(c){const m=MEDIA[c.slug];const own=[m.hero,...m.gallery].filter(Boolean);const extra=[...(LINKS[c.slug]||[]).map(k=>({src:k.cover,cap:k.label})),...(KOL_CASES[c.slug]||[]).map(k=>({src:k.cover,cap:k.creator}))].filter(x=>x.src&&!own.some(o=>o.src===x.src));return [...own,...extra];}
 function homeTiles(c){const it=mediaItems(c);return [0,1,2].map(n=>{const g=it[n];return g?`<button class="media-tile has-media" type="button" data-media="${n}" aria-label="查看:${e(g.cap)}">${mediaEl(g.src,g.cap)}<span class="tile-number">0${n+1}</span><span class="tile-label">${e(g.cap)}</span><span class="tile-expand" aria-hidden="true">↗</span></button>`:`<div class="media-tile neutral" aria-hidden="true"><span class="tile-number">0${n+1}</span><span class="tile-label">${e(c.evidence[n])}</span></div>`;}).join('');}
 function home(c){const i=cases.indexOf(c),prev=cases[(i+cases.length-1)%cases.length],next=cases[(i+1)%cases.length],m=MEDIA[c.slug];return `<div class="work-layout route-enter"><div class="work-copy"><div class="identity"><h1 class="hero-name">DAVINA HUANG</h1><p class="intro">西班牙语专业出身,专注西语与欧洲市场的整合营销:<br>把本地洞察变成可量化的 Campaign。<span class="en">INTEGRATED MARKETING · SPANISH-SPEAKING & EUROPEAN MARKETS · SHENZHEN</span></p></div><section class="project-stage" aria-labelledby="selected-project-title"><div class="project-client"><span class="micro-label">PROJECT</span><h2 id="selected-project-title" class="active-title">${e(c.title)}</h2></div><div class="project-deliverables"><span class="micro-label">SCOPE</span><p>${e(c.scope)}</p><span class="stage-counter">${c.number} / 06</span></div><p class="summary"><strong>${e(c.subtitle)}</strong><br>${e(c.summary)}</p><p class="result-line">${e(c.highlight)}</p><a class="view-link" href="#project/${c.slug}">VIEW PROJECT <span>查看完整案例 ↗</span></a></section><div class="work-bottom"><div class="step-controls"><a href="#work/${next.slug}" class="next-project"><span>NEXT</span><b>${e(next.title)}</b><i aria-hidden="true">↓</i></a><a href="#work/${prev.slug}" class="prev-project"><span>PREV</span><b>${e(prev.title)}</b><i aria-hidden="true">↑</i></a></div><button class="index-trigger" type="button" data-open-index>INDEX <span>${c.number} / 06</span><span aria-hidden="true">＋</span></button></div><span class="browse-hint">SCROLL / ↑ ↓ 浏览项目</span></div><div class="work-media" aria-label="项目视觉素材">${homeTiles(c)}</div></div>`;}
 const MEDIA = {
@@ -119,13 +119,52 @@ const MEDIA = {
     {src:'assets/ifa-2026/goggles-trial.jpg',cap:'观众佩戴 goggles 沉浸体验'},
     {src:'assets/ifa-2026/bambu-lab-cobrand.jpg',cap:'Bambu Lab 联名:现场展示 3D 打印配件'},
     {src:'assets/ifa-2026/ecoflow-codisplay.jpg',cap:'EcoFlow 联名产品互展与 IFA Deals 促销'}]},
-  'project-eternal':{hero:null,gallery:[]},
-  'a1-launch':{hero:null,gallery:[]},
-  'es-roadshow':{hero:{src:'assets/es-roadshow/hero-outdoor-trial.jpg',cap:'户外 goggles 沉浸试飞'},gallery:[
+  'project-eternal':{hero:null,gallery:[
+    {src:'assets/project-eternal/wechat-csr-capsule.jpg',cap:'全景时空胶囊计划(来源:影石 2025 年报)'}]},
+  'a1-launch':{hero:null,gallery:[
+]},
+  'es-roadshow':{hero:{src:'assets/es-roadshow/hero-group-tent.jpg',cap:'ES Roadshow 现场合影'},gallery:[
+    {src:'assets/es-roadshow/hero-outdoor-trial.jpg',cap:'户外 goggles 沉浸试飞'},
     {src:'assets/es-roadshow/gear-table.jpg',cap:'体验装备台'}]},
   'huion-mucha':{hero:null,gallery:[]},
-  'slate-ibis-paint':{hero:null,gallery:[]}
+  'slate-ibis-paint':{hero:null,gallery:[
+    {src:'assets/slate-ibis-paint/huion-benefits-ibispaint.jpg',cap:'官网权益页:ibisPaint X 用户权益'}]}
 };
+/* 相关链接(案例页「相关链接 / Evidence」行);yt = YouTube 视频 id,显示小缩略图 */
+const LINKS = {
+  'es-roadshow':[{label:'Roadshow 视频 1',src:'YouTube',url:'https://www.youtube.com/watch?v=E1G3492MAhM&t=107s',cover:'assets/es-roadshow/covers/yt-video1.jpg'},{label:'Roadshow 视频 2',src:'YouTube',url:'https://www.youtube.com/watch?v=pQAA7wP1x5k',cover:'assets/es-roadshow/covers/yt-video2.jpg'}],
+  'project-eternal':[{label:'Project Eternal 官网页',src:'antigravity.tech',url:'https://www.antigravity.tech/us/project-eternal/gaussian-splatting',cover:'assets/project-eternal/covers/official.jpg'},{label:'UGC 官方贴文',src:'Instagram',url:'https://www.instagram.com/antigravity_global/p/DXhFjEAmzQt/',cover:'assets/project-eternal/covers/ig-ugc.jpg'},{label:'TechRadar 报道',src:'TechRadar',url:'https://www.techradar.com/cameras/i-turned-my-local-beauty-spot-into-an-immersive-3d-environment-using-splatica-and-my-insta360-cameras-and-the-whole-process-is-surprisingly-easy',cover:'assets/project-eternal/covers/techradar.jpg'},{label:'Corridor Crew 视频(7.18M 订阅)',src:'YouTube',url:'https://www.youtube.com/watch?v=X8yRlA7jqEQ',cover:'assets/project-eternal/covers/yt-corridor.jpg'},{label:'影石 2025 年报:全景时空胶囊计划',src:'微信公众号',url:'https://mp.weixin.qq.com/s/Yplv0SzQNg4SEEa-6kfUtw',cover:'assets/project-eternal/covers/wechat.jpg'}],
+  'huion-mucha':[{label:'活动发布',src:'Instagram',url:'https://www.instagram.com/huiontableta/p/DLzdoPgOPlR/',cover:'assets/huion-mucha/covers/ig-launch.jpg'},{label:'截稿提醒',src:'Instagram',url:'https://www.instagram.com/huiontableta/p/DMXLY0mpd3x/',cover:'assets/huion-mucha/covers/ig-deadline.jpg'},{label:'获奖公布',src:'Instagram',url:'https://www.instagram.com/huiontableta/p/DNXXiky1DXH/',cover:'assets/huion-mucha/covers/ig-winners.jpg'}],
+  'slate-ibis-paint':[{label:'合作贴文',src:'Instagram',url:'https://www.instagram.com/huiontablet/p/DJo2TkWtD2e/',cover:'assets/slate-ibis-paint/covers/ig-collab.jpg'},{label:'官网权益页',src:'huion.com',url:'https://www.huion.com/subject/kamvas-slate-11-13-software-promo.html',cover:'assets/slate-ibis-paint/covers/huion-promo.jpg'}]
+};
+/* 归档链接:不在页面渲染,备用素材 / 面试补充 */
+const ARCHIVE_LINKS = ['https://www.instagram.com/huiontablet/p/DMb0JSyRvo6/','https://www.instagram.com/huiontablet/p/DLOWMZrv2VG/'];
+function linkRow(slug){const l=LINKS[slug];if(!l||!l.length)return '';return `<div class="links"><span class="links-label">相关链接 / Evidence</span><div class="lcards">${l.map(k=>`<a class="lcard" href="${e(k.url)}" target="_blank" rel="noopener noreferrer"><span class="lthumb" data-src="${e(k.src)}">${k.cover?`<img src="${e(k.cover)}" alt="" loading="lazy" onerror="this.remove()">`:''}</span><span class="lmeta"><b>${e(k.label)}</b><i>${e(k.src)} ↗</i></span></a>`).join('')}</div></div>`;}
+/* ================= KOL 案例 Gallery(A1 Launch 页) =================
+   每个案例 6 个字段;空字符串 '' 在页面上自动隐藏,后续直接填写即可。
+   纪律:不写合作金额、合作方内部争议或私有信息。 */
+const KOL_CASES = {
+  'a1-launch':[
+    {creator:'Alessandro Morolla', platform:'YouTube', url:'https://www.youtube.com/watch?v=INd4_PXxNNc', cover:'assets/a1-launch/covers/yt-morolla.jpg',
+     angle:'谈判过程艰难,展示谈判能力',
+     fields:{
+       背景目标:'',      // 项目背景与目标
+       筛选逻辑:'',      // 创作者筛选逻辑
+       合作谈判:'谈判过程艰难,最终达成合作。', // 不写金额
+       Brief把控:'',     // Brief 与内容把控
+       突发问题:'',      // 执行中的突发问题
+       数据复盘:''       // 数据表现与复盘
+     }},
+    {creator:'Los vídeos de Félix', platform:'YouTube', url:'https://www.youtube.com/watch?v=LaG0D3fbl6E&t=1032s', cover:'assets/a1-launch/covers/yt-felix.jpg',
+     angle:'说服创作者接受做横评',
+     fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'说服创作者接受以横评形式呈现 A1。', Brief把控:'', 突发问题:'', 数据复盘:''}},
+    {creator:'Travelsandvibes', platform:'Instagram', url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/', cover:'assets/a1-launch/covers/ig-travelsandvibes.jpg',
+     angle:'根据冬季 brief 产出,同期 3 个月内互动率最高',
+     fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'', Brief把控:'根据冬季 brief 产出内容。', 突发问题:'', 数据复盘:'同期 3 个月内互动率最高。'}}
+  ]
+};
+const KOL_FIELD_LABELS = {背景目标:'项目背景与目标',筛选逻辑:'创作者筛选逻辑',合作谈判:'合作谈判',Brief把控:'Brief 与内容把控',突发问题:'执行中的突发问题',数据复盘:'数据表现与复盘'};
+function kolGallery(slug){const l=KOL_CASES[slug];if(!l)return '';return `<div class="kol-grid">${l.map(k=>{const f=Object.entries(k.fields).filter(([,v])=>v&&v.trim());return `<div class="kol-card"><a class="kol-cover" href="${e(k.url)}" target="_blank" rel="noopener noreferrer"><img src="${e(k.cover)}" alt="${e(k.creator)}" loading="lazy" onerror="this.remove()"><span class="kol-plat">${e(k.platform)} ↗</span></a><div class="kol-body"><b>${e(k.creator)}</b><p>${e(k.angle)}</p>${f.length?`<details><summary>展开案例</summary><dl>${f.map(([key,v])=>`<div><dt>${e(KOL_FIELD_LABELS[key])}</dt><dd>${e(v)}</dd></div>`).join('')}</dl></details>`:''}</div></div>`;}).join('')}</div>`;}
 /* 结构化内容:brief = 背景/目标/职责;challenge = 核心挑战 → 解法;
    matrix(可复用)= 目标 × 动作矩阵,marks 值 'p' 主要 / 's' 次要。无 matrix 时 strategy 以卡片呈现。 */
 const EXTRA = {
@@ -216,8 +255,8 @@ ${m.hero?`<div class="case-hero">${fig(m.hero.src,m.hero.cap)}</div>`:''}
 ${blk('01 概览',`<div class="brief"><div><span>背景</span><p>${e(x.brief.bg)}</p></div><div><span>目标</span><p>${e(x.brief.goal)}</p></div><div><span>本人职责</span><p>${e(x.brief.role)}</p></div></div>`)}
 ${blk(x.pillars?'02 策略与执行':'02 策略',`${x.keyMessage?`<p class="keymsg"><span>KEY MESSAGE</span>${e(x.keyMessage)}</p>`:''}<p class="challenge"><span>挑战</span>${e(x.challenge[0])}<span class="arrow">→</span>${e(x.challenge[1])}</p>${strat}`)}
 ${x.noTimeline?'':blk('03 执行',`<ol class="timeline">${c.execution.map(([t,b])=>`<li><b>${e(t)}</b><p>${e(b)}</p></li>`).join('')}</ol>`)}
-${blk(x.noTimeline?'03 成果':'04 成果',`<div class="kpis">${c.results.map(([k,v,n])=>`<div class="kpi"><strong>${e(v)}</strong><span>${e(k)}</span>${n?`<small>${e(n)}</small>`:''}</div>`).join('')}</div>${gallery?`<div class="gallery g${m.gallery.length}">${gallery}</div>`:''}`)}
-${blk((x.noTimeline?'04 ':'05 ')+(x.reviewTitle||'复盘'),`<ul class="learn">${(x.review||c.learning).slice(0,3).map(q=>`<li>${e(q)}</li>`).join('')}</ul>`)}
+${blk(x.noTimeline?'03 成果':'04 成果',`${c.note?`<p class="kpi-note">${e(c.note)}</p>`:''}<div class="kpis">${c.results.map(([k,v,n])=>`<div class="kpi"><strong>${e(v)}</strong><span>${e(k)}</span>${n?`<small>${e(n)}</small>`:''}</div>`).join('')}</div>${gallery?`<div class="gallery g${m.gallery.length}">${gallery}</div>`:''}${linkRow(c.slug)}`)}
+${KOL_CASES[c.slug]?blk('04 KOL 案例 Gallery',kolGallery(c.slug)):''}${blk((x.noTimeline?(KOL_CASES[c.slug]?'05 ':'04 '):'05 ')+(x.reviewTitle||'复盘'),`<ul class="learn">${(x.review||c.learning).slice(0,3).map(q=>`<li>${e(q)}</li>`).join('')}</ul>`)}
 <nav class="case-navigation" aria-label="案例切换"><a href="#project/${prev.slug}"><span class="small-label">PREVIOUS CASE</span>${e(prev.title)}</a><a href="#project/${next.slug}"><span class="small-label">NEXT CASE</span>${e(next.title)}</a></nav></article>`;}
 /* TODO: LinkedIn 链接、简历 PDF 待用户提供。提供后填入下方常量即自动显示。 */
 const LINKEDIN='', RESUME_PDF='';
