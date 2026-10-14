@@ -247,7 +247,7 @@ function matrix(m){return `<table class="mx"><thead><tr><th></th>${m.goals.map(g
 function pillars(x){return `<div class="pillars">${x.pillars.map((p,n)=>`<div class="pillar"><span class="pn">P${n+1}</span>${p.en?`<h3>${e(p.en)}</h3><p class="pzh">${e(p.zh)}</p>`:`<h3 class="pzh-only">${e(p.zh)}</h3>`}<dl>${p.rows.map(([k,v])=>`<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join('')}</dl></div>`).join('')}</div>${x.support?`<div class="support"><span>跨支柱支撑</span>${x.support.map(t=>`<b>${e(t)}</b>`).join('')}</div>`:''}`;}
 function blk(label,body,cls=''){return `<section class="blk ${cls}"><h2 class="blk-label">${label}</h2><div class="blk-body">${body}</div></section>`;}
 function detail(c){const i=cases.indexOf(c),prev=cases[(i+cases.length-1)%cases.length],next=cases[(i+1)%cases.length],m=MEDIA[c.slug],x=EXTRA[c.slug];
-const metaLine=[c.brand,c.market,c.period].filter(Boolean).map(e).join('<span class="sep">·</span>');
+const metaLine=[c.brand,c.market,c.period].filter(Boolean).map(x=>`<span class="mi">${e(x)}</span>`).join('<span class="sep">·</span>');
 const gallery=m.gallery.map(g=>fig(g.src,g.cap,g.fit==='contain'?'contain':'')).join('');
 const strat=x.pillars?`<div class="strat-grid">${pillars(x)}${x.matrix?`<div class="mx-wrap"><span class="blk-sub">目标 × 动作</span>${matrix(x.matrix)}</div>`:''}</div>`:x.matrix?matrix(x.matrix):`<div class="strat-cards">${c.strategy.map(([t,b])=>`<div><b>${e(t)}</b><p>${e(b)}</p></div>`).join('')}</div>`;
 return `<article class="case-page v2 route-enter"><div class="case-topline"><a class="back-link" href="#work/${c.slug}">← 返回项目</a><span>CASE ${c.number} / 06</span></div>

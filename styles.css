@@ -71,3 +71,23 @@ dialog{color:var(--ink);background:var(--bg);border:0;padding:30px;margin:auto;w
 .media-fig.contain,.media-tile.contain{background:#fff!important}.media-fig.contain img,.media-tile.contain img{object-fit:contain!important;background:#fff}.media-tile.contain .tile-label,.media-tile.contain .tile-number{background:rgba(255,255,255,.85);padding:1px 4px;color:#555}
 .gallery.g2 .media-fig.contain img{height:340px}
 .media-tile.contain.has-media img{top:30px;bottom:34px;height:calc(100% - 64px)}
+/* mobile fixes 2026-10-14 */
+@media(max-width:620px){
+html[data-route=work] .site-header{position:static;top:auto;right:auto;display:flex;justify-content:flex-end;padding:8px 10px 0;text-align:right}
+html[data-route=work] .site-header nav{display:flex;flex-direction:row;align-items:center;gap:14px}
+html[data-route=work] .intro{margin-right:12px;max-width:none}
+html[data-route=work] .work-copy{min-height:0;display:flex;flex-direction:column}
+html[data-route=work] .project-stage,
+html[data-route=work] .work-bottom,
+html[data-route=work] .browse-hint{position:static}
+html[data-route=work] .project-stage{margin-top:28px}
+html[data-route=work] .work-bottom{margin:22px 0 14px}
+html[data-route=work] .browse-hint{display:block;margin:20px 0 0 9%}
+html[data-route=work] .result-line{margin-left:9%;margin-right:12px}
+.case-metaline{display:flex;flex-wrap:wrap;column-gap:6px;align-items:baseline}
+.case-metaline .mi{white-space:nowrap}
+.case-metaline .sep{flex:0 0 auto}
+.lcard{height:auto}.lthumb{height:100px;flex:none}
+.lmeta b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.mx-wrap{overflow-x:auto}
+}
