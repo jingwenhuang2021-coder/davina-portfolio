@@ -47,12 +47,12 @@ const cases = [
     strategy:[['区域覆盖','法国、意大利、西班牙三市场协同推进头部创作者合作。以六个代表性内容案例展示区域覆盖，不将不同市场的执行方式强行写成同一套。'],['卖点转译','将高单价、高教育门槛产品的核心价值转译为创作者能自然讲述、受众易于理解的内容。'],['合作伙伴管理','在头部创作者合作中兼顾商务条件、排期和交付要求；通过持续关系维护，为品牌争取上市投放以外的额外自然露出。'],['PR 与复盘','主动 pitch 西班牙头部媒体，结合「注意 → 点击 → 购买」漏斗与用户异议复盘传播效果。']],
     execution:[['区域创作者合作','推进法国、意大利、西班牙市场的头部创作者合作与内容上线，跟进合作条件及交付节点。'],['商务与排期协调','围绕高报价、档期紧张等合作难点持续沟通，协调创作者需求与上市时间安排。'],['长期关系维护','上市约半年后，法国合作伙伴 Jojol 主动将 A1 带入与另一位法国头部创作者 Michou 的内容中，形成额外免费产品露出。'],['PR 与内容复盘','西班牙主动拓展并促成 7 家头部媒体深度报道；上市周期分发 28 篇新闻稿，并按漏斗复盘 KOL 表现。']],
     creatorMarkets:[
-      {country:'FRANCE',name:'Jojol',role:'付费合作 / 后续自然露出',url:'https://www.youtube.com/watch?v=lRx10hsbshw&t=803s',note:'持续维护合作关系；上市约半年后，Jojol 主动将 A1 带入与 Michou 的内容中。'},
-      {country:'FRANCE',name:'Nowtech',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=EYSsnk25ve4',note:'法国市场代表性创作者合作内容。'},
-      {country:'ITALY',name:'Andrea Galeazzi',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s',note:'意大利市场代表性创作者合作内容。'},
-      {country:'ITALY',name:'Italian creator · video 02',role:'创作者合作',url:'https://www.youtube.com/watch?v=bgv77NZSAu8&t=26s',note:'意大利市场第二个代表性合作视频；发布前补齐频道名称。'},
-      {country:'SPAIN',name:'Spanish creator · Shorts',role:'短视频合作',url:'https://www.youtube.com/shorts/pAINx-sUQdo',note:'西班牙市场短视频合作；发布前补齐频道名称。'},
-      {country:'SPAIN',name:'Víctor Abarca',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=xSzQQnm5gx0&t=3s',note:'西班牙市场代表性创作者合作内容。'}
+      {country:'FRANCE',name:'Jojol',role:'付费合作 / 后续自然露出',url:'https://www.youtube.com/watch?v=lRx10hsbshw&t=803s',thumbnail:'https://i.ytimg.com/vi/lRx10hsbshw/hqdefault.jpg',note:'持续维护合作关系；上市约半年后，Jojol 主动将 A1 带入与 Michou 的内容中。'},
+      {country:'ITALY',name:'Andrea Galeazzi',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s',thumbnail:'https://i.ytimg.com/vi/gKLApfIwLgE/hqdefault.jpg',note:'意大利市场代表性创作者合作内容。'},
+      {country:'SPAIN',name:'Víctor Abarca',role:'头部科技创作者合作 · 188K views',url:'https://www.youtube.com/watch?v=xSzQQnm5gx0&t=3s',thumbnail:'https://i.ytimg.com/vi/xSzQQnm5gx0/hqdefault.jpg',note:'西班牙市场长视频合作内容。'},
+      {country:'FRANCE',name:'Nowtech',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=EYSsnk25ve4',thumbnail:'https://i.ytimg.com/vi/EYSsnk25ve4/hqdefault.jpg',note:'法国市场代表性创作者合作内容。'},
+      {country:'ITALY',name:'Alberto Naska',role:'创作者合作',url:'https://www.youtube.com/watch?v=bgv77NZSAu8&t=26s',thumbnail:'https://i.ytimg.com/vi/bgv77NZSAu8/hqdefault.jpg',note:'意大利市场第二个代表性视频。'},
+      {country:'SPAIN',name:'Travelsandvibes',role:'短视频合作',url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/',thumbnail:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/',note:'西班牙市场短视频合作；保留库中已有链接。'}
     ],
     results:[['KOL 视频','60 条','上市期及后续投放合并口径；内容交付量居全海外市场第一'],['KOL 曝光','4.49M','上市期及后续投放合并口径'],['头部创作者','法国 / 意大利 / 西班牙','三个市场均有头部创作者合作；六条代表性内容见下方'],['西班牙 PR','7 家媒体','包括 El País、El Mundo、La Vanguardia 等；上市周期分发 28 篇新闻稿']],
     evidence:['A1 上市主视觉','三国创作者合作内容','西班牙媒体报道'],
@@ -153,7 +153,7 @@ function linkRow(slug){const l=LINKS[slug];if(!l||!l.length)return '';return `<d
    纪律:不写合作金额、合作方内部争议或私有信息。 */
 const KOL_CASES = {
   'a1-launch':[
-    {creator:'Alessandro Morolla', platform:'YouTube', url:'https://www.youtube.com/watch?v=INd4_PXxNNc', cover:'assets/a1-launch/covers/yt-morolla.jpg',
+    {creator:'Jojol', platform:'YouTube', url:'https://www.youtube.com/watch?v=lRx10hsbshw&t=803s', cover:'https://i.ytimg.com/vi/lRx10hsbshw/hqdefault.jpg',
      angle:'谈判过程艰难,展示谈判能力',
      fields:{
        背景目标:'',      // 项目背景与目标
@@ -163,10 +163,10 @@ const KOL_CASES = {
        突发问题:'',      // 执行中的突发问题
        数据复盘:''       // 数据表现与复盘
      }},
-    {creator:'Los vídeos de Félix', platform:'YouTube', url:'https://www.youtube.com/watch?v=LaG0D3fbl6E&t=1032s', cover:'assets/a1-launch/covers/yt-felix.jpg',
+    {creator:'Andrea Galeazzi', platform:'YouTube', url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s', cover:'https://i.ytimg.com/vi/gKLApfIwLgE/hqdefault.jpg',
      angle:'说服创作者接受做横评',
      fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'说服创作者接受以横评形式呈现 A1。', Brief把控:'', 突发问题:'', 数据复盘:''}},
-    {creator:'Travelsandvibes', platform:'Instagram', url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/', cover:'assets/a1-launch/covers/ig-travelsandvibes.jpg',
+    {creator:'Travelsandvibes', platform:'Instagram', url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/', cover:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/',
      angle:'根据冬季 brief 产出,同期 3 个月内互动率最高',
      fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'', Brief把控:'根据冬季 brief 产出内容。', 突发问题:'', 数据复盘:'同期 3 个月内互动率最高。'}}
   ]
@@ -263,7 +263,7 @@ ${m.hero?`<div class="case-hero">${fig(m.hero.src,m.hero.cap,m.hero.fit==='conta
 ${blk('01 概览',`<div class="brief"><div><span>背景</span><p>${e(x.brief.bg)}</p></div><div><span>目标</span><p>${e(x.brief.goal)}</p></div><div><span>本人职责</span><p>${e(x.brief.role)}</p></div></div>`)}
 ${blk(x.pillars?'02 策略与执行':'02 策略',`${x.keyMessage?`<p class="keymsg"><span>KEY MESSAGE</span>${e(x.keyMessage)}</p>`:''}<p class="challenge"><span>挑战</span>${e(x.challenge[0])}<span class="arrow">→</span>${e(x.challenge[1])}</p>${strat}`)}
 ${x.noTimeline?'':blk('03 执行',`<ol class="timeline">${c.execution.map(([t,b])=>`<li><b>${e(t)}</b><p>${e(b)}</p></li>`).join('')}</ol>`)}
-${c.creatorMarkets?blk('04 三国头部创作者合作',`<p class="section-intro">六条代表性内容，展示法国、意大利、西班牙的区域合作覆盖。点击卡片可打开原视频。</p><div class="strat-cards creator-grid">${c.creatorMarkets.map((p,i)=>`<a class="creator-card" href="${e(p.url)}" target="_blank" rel="noopener"><span class="creator-country">${e(p.country)}</span><b>${e(p.name)}</b><span class="creator-role">${e(p.role)}</span><p>${e(p.note)}</p><span class="creator-link">WATCH VIDEO ↗</span></a>`).join('')}</div>`):''}
+ ${c.creatorMarkets?blk('04 三国头部创作者合作',`<p class="section-intro">六条代表性内容，展示法国、意大利、西班牙的区域合作覆盖。点击卡片可打开原视频。</p><div class="creator-grid">${c.creatorMarkets.map((p,i)=>`<a class="creator-card" href="${e(p.url)}" target="_blank" rel="noopener"><img class="creator-thumb" src="${e(p.thumbnail)}" alt="${e(p.name)} 视频封面" loading="lazy" onerror="this.src=this.src.replace('/maxresdefault.jpg','/hqdefault.jpg')"><span class="creator-country">${e(p.country)}</span><b>${e(p.name)}</b><span class="creator-role">${e(p.role)}</span><p>${e(p.note)}</p><span class="creator-link">WATCH VIDEO ↗</span></a>`).join('')}</div>`):''}
 ${blk(x.noTimeline?'03 成果':'05 成果',`${c.note?`<p class="kpi-note">${e(c.note)}</p>`:''}<div class="kpis">${c.results.map(([k,v,n])=>`<div class="kpi"><strong>${e(v)}</strong><span>${e(k)}</span>${n?`<small>${e(n)}</small>`:''}</div>`).join('')}</div>${gallery?`<div class="gallery g${m.gallery.length}">${gallery}</div>`:''}${linkRow(c.slug)}`)}
 ${(KOL_CASES[c.slug]&&c.slug!=='a1-launch')?blk('04 KOL 案例 Gallery',kolGallery(c.slug)):''}${blk((c.slug==='a1-launch'?'06 ':x.noTimeline?(KOL_CASES[c.slug]?'05 ':'04 '):'05 ')+(x.reviewTitle||'复盘'),`<ul class="learn">${(x.review||c.learning).slice(0,3).map(q=>`<li>${e(q)}</li>`).join('')}</ul>`)}
 <nav class="case-navigation" aria-label="案例切换"><a href="#project/${prev.slug}"><span class="small-label">PREVIOUS CASE</span>${e(prev.title)}</a><a href="#project/${next.slug}"><span class="small-label">NEXT CASE</span>${e(next.title)}</a></nav></article>`;}
