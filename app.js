@@ -37,19 +37,26 @@ const cases = [
     learning:['文化遗产叙事让技术玩法具备媒体价值,是媒体报道远超目标的关键支点。','垂直社区(SuperSplat、80LV、3DGS)冷启动,比单纯投放更适合高门槛的创作型玩法。','五渠道协同加 giveaway 机制,用于降低从报名到创作的参与门槛。']
   },
   {
-    slug:'a1-launch',number:'03',title:'A1 Launch',kind:'海外 KOL 与 PR 上市传播',brand:'Antigravity A1',market:'意大利 / 西班牙',period:'2025.12 上市',
-    subtitle:'60 条 KOL 视频 · 4.49M 曝光,交付量全海外市场第一',
-    highlight:'6 位百万级头部博主 · 7 家西班牙头部媒体深度报道 · 28 篇新闻稿',
-    scope:'达人策略 / 内容管理 / 媒体 Pitch',
-    summary:'入职 4 个月即负责 A1 上市传播,把高单价、高教育门槛产品的卖点转译为创作者内容,并主动 pitch 西班牙头部媒体。',
-    overview:'Antigravity A1 于 2025.12.04 上市。负责意大利、西班牙市场的达人矩阵与内容方向,并推进西班牙媒体深度报道与上市新闻稿分发。',
-    role:'制定三市场达人矩阵与内容方向;主动 pitch 西班牙头部媒体;建立 KOL 复盘体系并完成诊断。',
-    strategy:[['卖点转译','将高单价、高教育门槛产品的卖点转译为创作者内容,让用户看懂产品价值。'],['达人矩阵','意大利、西班牙市场达人矩阵,合作 6 位百万级头部博主。'],['主动 PR','主动 pitch 并谈成 El País、El Mundo、La Vanguardia 等 7 家西班牙头部媒体深度报道。']],
-    execution:[['上市准备','三市场达人矩阵与内容方向制定,上市信息对齐。'],['内容交付','上市期及后续投放的达人内容交付与上线管理。'],['PR 与复盘','媒体 pitch、28 篇新闻稿分发,按漏斗复盘 KOL 表现。']],
-    results:[['KOL 视频','60 条','上市期及后续投放合并口径;交付量居全海外市场第一'],['KOL 曝光','4.49M','同上口径'],['头部博主','6 位','百万级粉丝博主'],['媒体报道','7 家深度报道','西班牙头部媒体(El País、El Mundo、La Vanguardia 等);上市周期分发 28 篇新闻稿']],
-    evidence:['A1 上市主视觉','代表 KOL 内容','西班牙媒体报道'],
-    // TODO(CV 开放槽位 3):「推动 KOL 策略从大众曝光转向人群验证与内容资产产出」——确认是已推动还是建议后,加入第 3 条 learning。
-    learning:['建立「注意 → 点击 → 购买」漏斗复盘体系,用来定位 KOL 内容的转化断点。','分类归纳用户反对意见,作为调整内容方向与达人选择的依据。']
+    slug:'a1-launch',number:'03',title:'A1 Launch',kind:'西南欧区域上市传播',brand:'Antigravity A1',market:'法国 / 意大利 / 西班牙',period:'2025.12 上市',
+    subtitle:'60 条 KOL 视频 · 4.49M 曝光 · 海外市场内容交付量第一',
+    highlight:'法国、意大利、西班牙头部创作者合作 · 7 家西班牙头部媒体深度报道 · 28 篇新闻稿',
+    scope:'区域创作者策略 / 商务与交付协调 / KOL & PR / 效果复盘',
+    summary:'以法国、意大利、西班牙三个市场为区域框架，结合本地创作者内容与市场传播需求推进 A1 上市。除内容规划与交付管理外，也持续维护头部创作者关系，让合作价值延伸至单次付费投放之外。',
+    overview:'Antigravity A1 于 2025 年 12 月上市。参与法国、意大利、西班牙市场的头部创作者合作与上市传播，围绕高单价、需要用户教育的 360° 无人机产品，将核心卖点转化为创作者内容，并在西班牙推进媒体报道与新闻稿分发。',
+    role:'参与区域创作者合作规划与内容方向；推进头部创作者商务条件沟通、排期协调及内容交付；持续维护核心合作伙伴关系；主动 pitch 西班牙头部媒体并建立 KOL 内容复盘机制。',
+    strategy:[['区域覆盖','法国、意大利、西班牙三市场协同推进头部创作者合作。以六个代表性内容案例展示区域覆盖，不将不同市场的执行方式强行写成同一套。'],['卖点转译','将高单价、高教育门槛产品的核心价值转译为创作者能自然讲述、受众易于理解的内容。'],['合作伙伴管理','在头部创作者合作中兼顾商务条件、排期和交付要求；通过持续关系维护，为品牌争取上市投放以外的额外自然露出。'],['PR 与复盘','主动 pitch 西班牙头部媒体，结合「注意 → 点击 → 购买」漏斗与用户异议复盘传播效果。']],
+    execution:[['区域创作者合作','推进法国、意大利、西班牙市场的头部创作者合作与内容上线，跟进合作条件及交付节点。'],['商务与排期协调','围绕高报价、档期紧张等合作难点持续沟通，协调创作者需求与上市时间安排。'],['长期关系维护','上市约半年后，法国合作伙伴 Jojol 主动将 A1 带入与另一位法国头部创作者 Michou 的内容中，形成额外免费产品露出。'],['PR 与内容复盘','西班牙主动拓展并促成 7 家头部媒体深度报道；上市周期分发 28 篇新闻稿，并按漏斗复盘 KOL 表现。']],
+    creatorMarkets:[
+      {country:'FRANCE',name:'Jojol',role:'付费合作 / 后续自然露出',url:'https://www.youtube.com/watch?v=lRx10hsbshw&t=803s',note:'持续维护合作关系；上市约半年后，Jojol 主动将 A1 带入与 Michou 的内容中。'},
+      {country:'FRANCE',name:'Nowtech',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=EYSsnk25ve4',note:'法国市场代表性创作者合作内容。'},
+      {country:'ITALY',name:'Andrea Galeazzi',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s',note:'意大利市场代表性创作者合作内容。'},
+      {country:'ITALY',name:'Italian creator · video 02',role:'创作者合作',url:'https://www.youtube.com/watch?v=bgv77NZSAu8&t=26s',note:'意大利市场第二个代表性合作视频；发布前补齐频道名称。'},
+      {country:'SPAIN',name:'Spanish creator · Shorts',role:'短视频合作',url:'https://www.youtube.com/shorts/pAINx-sUQdo',note:'西班牙市场短视频合作；发布前补齐频道名称。'},
+      {country:'SPAIN',name:'Víctor Abarca',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=xSzQQnm5gx0&t=3s',note:'西班牙市场代表性创作者合作内容。'}
+    ],
+    results:[['KOL 视频','60 条','上市期及后续投放合并口径；内容交付量居全海外市场第一'],['KOL 曝光','4.49M','上市期及后续投放合并口径'],['头部创作者','法国 / 意大利 / 西班牙','三个市场均有头部创作者合作；六条代表性内容见下方'],['西班牙 PR','7 家媒体','包括 El País、El Mundo、La Vanguardia 等；上市周期分发 28 篇新闻稿']],
+    evidence:['A1 上市主视觉','三国创作者合作内容','西班牙媒体报道'],
+    learning:['区域创作者策略不只是选择大账号，还需要把产品教育、内容适配与上市节奏放在一起考虑。','头部创作者的排期和合作条件需要持续沟通；关系维护也可能在付费合作结束后继续带来品牌露出。','建立「注意 → 点击 → 购买」漏斗复盘体系，并分类归纳用户反对意见，用于定位内容转化断点与调整达人策略。']
   },
   {
     slug:'es-roadshow',number:'04',title:'ES Roadshow',kind:'A1 西班牙沉浸式路演 · 市场验证',brand:'Antigravity A1',market:'西班牙四城',period:null /* TODO: 路演日期待用户提供 */,
@@ -256,8 +263,9 @@ ${m.hero?`<div class="case-hero">${fig(m.hero.src,m.hero.cap,m.hero.fit==='conta
 ${blk('01 概览',`<div class="brief"><div><span>背景</span><p>${e(x.brief.bg)}</p></div><div><span>目标</span><p>${e(x.brief.goal)}</p></div><div><span>本人职责</span><p>${e(x.brief.role)}</p></div></div>`)}
 ${blk(x.pillars?'02 策略与执行':'02 策略',`${x.keyMessage?`<p class="keymsg"><span>KEY MESSAGE</span>${e(x.keyMessage)}</p>`:''}<p class="challenge"><span>挑战</span>${e(x.challenge[0])}<span class="arrow">→</span>${e(x.challenge[1])}</p>${strat}`)}
 ${x.noTimeline?'':blk('03 执行',`<ol class="timeline">${c.execution.map(([t,b])=>`<li><b>${e(t)}</b><p>${e(b)}</p></li>`).join('')}</ol>`)}
-${blk(x.noTimeline?'03 成果':'04 成果',`${c.note?`<p class="kpi-note">${e(c.note)}</p>`:''}<div class="kpis">${c.results.map(([k,v,n])=>`<div class="kpi"><strong>${e(v)}</strong><span>${e(k)}</span>${n?`<small>${e(n)}</small>`:''}</div>`).join('')}</div>${gallery?`<div class="gallery g${m.gallery.length}">${gallery}</div>`:''}${linkRow(c.slug)}`)}
-${KOL_CASES[c.slug]?blk('04 KOL 案例 Gallery',kolGallery(c.slug)):''}${blk((x.noTimeline?(KOL_CASES[c.slug]?'05 ':'04 '):'05 ')+(x.reviewTitle||'复盘'),`<ul class="learn">${(x.review||c.learning).slice(0,3).map(q=>`<li>${e(q)}</li>`).join('')}</ul>`)}
+${c.creatorMarkets?blk('04 三国头部创作者合作',`<p class="section-intro">六条代表性内容，展示法国、意大利、西班牙的区域合作覆盖。点击卡片可打开原视频。</p><div class="strat-cards creator-grid">${c.creatorMarkets.map((p,i)=>`<a class="creator-card" href="${e(p.url)}" target="_blank" rel="noopener"><span class="creator-country">${e(p.country)}</span><b>${e(p.name)}</b><span class="creator-role">${e(p.role)}</span><p>${e(p.note)}</p><span class="creator-link">WATCH VIDEO ↗</span></a>`).join('')}</div>`):''}
+${blk(x.noTimeline?'03 成果':'05 成果',`${c.note?`<p class="kpi-note">${e(c.note)}</p>`:''}<div class="kpis">${c.results.map(([k,v,n])=>`<div class="kpi"><strong>${e(v)}</strong><span>${e(k)}</span>${n?`<small>${e(n)}</small>`:''}</div>`).join('')}</div>${gallery?`<div class="gallery g${m.gallery.length}">${gallery}</div>`:''}${linkRow(c.slug)}`)}
+${(KOL_CASES[c.slug]&&c.slug!=='a1-launch')?blk('04 KOL 案例 Gallery',kolGallery(c.slug)):''}${blk((c.slug==='a1-launch'?'06 ':x.noTimeline?(KOL_CASES[c.slug]?'05 ':'04 '):'05 ')+(x.reviewTitle||'复盘'),`<ul class="learn">${(x.review||c.learning).slice(0,3).map(q=>`<li>${e(q)}</li>`).join('')}</ul>`)}
 <nav class="case-navigation" aria-label="案例切换"><a href="#project/${prev.slug}"><span class="small-label">PREVIOUS CASE</span>${e(prev.title)}</a><a href="#project/${next.slug}"><span class="small-label">NEXT CASE</span>${e(next.title)}</a></nav></article>`;}
 /* TODO: LinkedIn 链接、简历 PDF 待用户提供。提供后填入下方常量即自动显示。 */
 const LINKEDIN='', RESUME_PDF='';
