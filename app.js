@@ -49,7 +49,7 @@ const cases = [
     creatorMarkets:[
       {country:'FRANCE',name:'Jojol',role:'付费合作 / 后续自然露出',url:'https://www.youtube.com/watch?v=lRx10hsbshw&t=803s',thumbnail:'https://i.ytimg.com/vi/lRx10hsbshw/hqdefault.jpg',note:'持续维护合作关系；上市约半年后，Jojol 主动将 A1 带入与 Michou 的内容中。'},
       {country:'ITALY',name:'Andrea Galeazzi',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s',thumbnail:'https://i.ytimg.com/vi/gKLApfIwLgE/hqdefault.jpg',note:'意大利市场代表性创作者合作内容。'},
-      {country:'SPAIN',name:'Victor and Bug',role:'头部科技创作者合作 · 188K views',url:'https://www.youtube.com/watch?v=xSzQQnm5gx0&t=3s',thumbnail:'https://i.ytimg.com/vi/xSzQQnm5gx0/hqdefault.jpg',note:'西班牙市场长视频合作内容。'},
+      {country:'SPAIN',name:'Victor Abarca',role:'头部科技创作者合作 · 188K views',url:'https://www.youtube.com/watch?v=xSzQQnm5gx0&t=3s',thumbnail:'https://i.ytimg.com/vi/xSzQQnm5gx0/hqdefault.jpg',note:'西班牙市场长视频合作内容。'},
       {country:'FRANCE',name:'Nowtech',role:'头部科技创作者合作',url:'https://www.youtube.com/watch?v=EYSsnk25ve4',thumbnail:'https://i.ytimg.com/vi/EYSsnk25ve4/hqdefault.jpg',note:'法国市场代表性创作者合作内容。'},
       {country:'ITALY',name:'Alberto Naska',role:'创作者合作',url:'https://www.youtube.com/watch?v=bgv77NZSAu8&t=26s',thumbnail:'https://i.ytimg.com/vi/bgv77NZSAu8/hqdefault.jpg',note:'意大利市场第二个代表性视频。'},
       {country:'SPAIN',name:'Travelsandvibes',role:'短视频合作',url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/',thumbnail:'assets/a1-launch/covers/ig-travelsandvibes.jpg',note:'西班牙市场旅行类短视频合作。'}
