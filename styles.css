@@ -116,3 +116,16 @@ html[data-route=work] .result-line{margin-left:9%;margin-right:12px}
 .creator-card p{margin-top:0;margin-bottom:.25rem}
 @media(max-width:900px){.creator-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.creator-grid{grid-template-columns:1fr}.creator-thumb{aspect-ratio:16/9}}
+
+/* A1 results: equal readable columns without oversized market names */
+.a1-kpis{grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.a1-kpis .kpi{min-width:0;padding:0 0 4px}
+.a1-kpis .kpi strong{font-size:clamp(26px,2.8vw,38px);line-height:1.15;white-space:nowrap}
+.a1-kpis .kpi span{font-size:12px;margin-top:8px}
+.a1-kpis .kpi small{font-size:11px;line-height:1.7;margin-top:7px}
+.blk:has(.a1-kpis),.blk:has(.creator-grid){grid-template-columns:1fr;gap:14px}
+.blk:has(.a1-kpis) .blk-label,.blk:has(.creator-grid) .blk-label{font-size:12px}
+.blk:has(.creator-grid) .section-intro{margin:0;font-size:13px}
+.blk:has(.creator-grid) .creator-grid{margin-top:16px}
+@media(max-width:850px){.a1-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
+@media(max-width:420px){.a1-kpis{gap:20px 16px}.a1-kpis .kpi strong{font-size:28px}}
