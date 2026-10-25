@@ -166,7 +166,7 @@ const KOL_CASES = {
     {creator:'Andrea Galeazzi', platform:'YouTube', url:'https://www.youtube.com/watch?v=gKLApfIwLgE&t=871s', cover:'https://i.ytimg.com/vi/gKLApfIwLgE/hqdefault.jpg',
      angle:'说服创作者接受做横评',
      fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'说服创作者接受以横评形式呈现 A1。', Brief把控:'', 突发问题:'', 数据复盘:''}},
-    {creator:'Travelsandvibes', platform:'Instagram', url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/', cover:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/',
+    {creator:'Travelsandvibes', platform:'Instagram', url:'https://www.instagram.com/travelsandvibes/reel/DTfnC71jOE_/', cover:'assets/a1-launch/covers/ig-travelsandvibes.jpg',
      angle:'根据冬季 brief 产出,同期 3 个月内互动率最高',
      fields:{背景目标:'', 筛选逻辑:'', 合作谈判:'', Brief把控:'根据冬季 brief 产出内容。', 突发问题:'', 数据复盘:'同期 3 个月内互动率最高。'}}
   ]
