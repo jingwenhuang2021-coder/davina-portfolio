@@ -29,7 +29,7 @@ function localize(root){
   for(const el of nodes){
     if(!originalAttributes.has(el))originalAttributes.set(el,{});
     const originals=originalAttributes.get(el);
-    for(const attr of ['aria-label','alt','title'])if(el.hasAttribute(attr)){
+    for(const attr of ['aria-label','alt','title'])if(el.hasAttribute(attr)&&el.id!=='language'&&el.id!=='theme'){
       if(!(attr in originals))originals[attr]=el.getAttribute(attr);
       el.setAttribute(attr,t(originals[attr]));
     }

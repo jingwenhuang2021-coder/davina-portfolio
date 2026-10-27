@@ -149,4 +149,14 @@ html[data-route=work] .result-line{margin-left:9%;margin-right:12px}
 :root[data-language=en] .ab-row b{line-height:1.5}
 :root[data-language=en] .ab-caps .ab-row{grid-template-columns:1fr}
 :root[data-language=en] .creator-card p{font-size:13px}
+@media(min-width:621px){
+html[data-route=work][data-language=en] .work-copy{display:flex;flex-direction:column}
+html[data-route=work][data-language=en] .identity{order:0;flex:none}
+html[data-route=work][data-language=en] .browse-hint{position:static;order:1;margin:18px 0 12px 5.9%}
+html[data-route=work][data-language=en] .project-stage{position:static;order:2;margin-top:auto;padding:16px 16px 0 0}
+html[data-route=work][data-language=en] .project-deliverables p{font-size:clamp(19px,2vw,29px);line-height:1.15}
+html[data-route=work][data-language=en] .summary{max-width:500px;margin:24px 0 15px 5.9%;font-size:12px;line-height:1.55}
+html[data-route=work][data-language=en] .result-line{margin:0 5.9% 15px;line-height:1.5}
+html[data-route=work][data-language=en] .work-bottom{position:static;order:3;margin:20px 28px 5px 0;flex:none}
+}
 @media(max-width:620px){.site-header nav{gap:10px}.language-button{font-size:10px;min-width:32px;padding:5px}:root[data-language=en] .intro{font-size:15px}:root[data-language=en] .ab-row{grid-template-columns:95px minmax(0,1fr)}:root[data-language=en] .ab-caps .ab-row{grid-template-columns:1fr}}
