@@ -129,3 +129,24 @@ html[data-route=work] .result-line{margin-left:9%;margin-right:12px}
 .blk:has(.creator-grid) .creator-grid{margin-top:16px}
 @media(max-width:850px){.a1-kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}}
 @media(max-width:420px){.a1-kpis{gap:20px 16px}.a1-kpis .kpi strong{font-size:28px}}
+
+
+/* English copy uses the same layout, with room for longer words. */
+.language-button{background:none;border:1px solid var(--line);border-radius:2px;font-size:11px;font-weight:800;min-width:36px;padding:5px 7px;line-height:1;white-space:nowrap}
+:root[data-language=en] .intro{max-width:560px;font-size:clamp(15px,1.4vw,21px);line-height:1.45}
+:root[data-language=en] .intro .en{display:none}
+:root[data-language=en] .summary{line-height:1.6}
+:root[data-language=en] .blk-label{line-height:1.5;overflow-wrap:normal}
+:root[data-language=en] .brief p{line-height:1.65}
+:root[data-language=en] .pillar dl div{grid-template-columns:43px minmax(0,1fr)}
+:root[data-language=en] .pillar h3{line-height:1.35}
+:root[data-language=en] .mx-wrap{overflow-x:auto}
+:root[data-language=en] .mx{min-width:250px}
+:root[data-language=en] .mx th{white-space:normal}
+:root[data-language=en] .kpi strong{font-size:clamp(20px,2.2vw,32px);overflow-wrap:normal}
+:root[data-language=en] .kpi small{line-height:1.6}
+:root[data-language=en] .ab-row{grid-template-columns:130px minmax(0,1fr)}
+:root[data-language=en] .ab-row b{line-height:1.5}
+:root[data-language=en] .ab-caps .ab-row{grid-template-columns:1fr}
+:root[data-language=en] .creator-card p{font-size:13px}
+@media(max-width:620px){.site-header nav{gap:10px}.language-button{font-size:10px;min-width:32px;padding:5px}:root[data-language=en] .intro{font-size:15px}:root[data-language=en] .ab-row{grid-template-columns:95px minmax(0,1fr)}:root[data-language=en] .ab-caps .ab-row{grid-template-columns:1fr}}

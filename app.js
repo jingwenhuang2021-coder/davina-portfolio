@@ -1,5 +1,56 @@
 /* Portfolio v3: self-contained browser script. Content source: CV 内容稿 v4 (2026-10-12). */
 (()=>{
+
+const dictionary=window.PORTFOLIO_EN||{};
+const explicitLanguage=new URLSearchParams(location.search).get('lang');
+let language='zh';
+try{language=localStorage.getItem('davina-language')==='en'?'en':'zh';}catch{}
+if(explicitLanguage==='en'||explicitLanguage==='zh')language=explicitLanguage;
+const originalText=new WeakMap(),originalAttributes=new WeakMap();
+function t(value){
+  const s=String(value);if(language!=='en')return s;
+  const key=s.trim();let out=dictionary[key];
+  if(out===undefined){
+    const numbered=key.match(/^(\d{2}) (.+)$/);
+    if(numbered&&dictionary[numbered[2]])out=numbered[1]+' '+dictionary[numbered[2]];
+    else if(key.startsWith('查看:'))out='View: '+t(key.slice(3));
+    else if(key.endsWith(' 视频封面'))out=key.slice(0,-5)+' video cover';
+  }
+  return out===undefined?s:s.slice(0,s.indexOf(key))+out+s.slice(s.indexOf(key)+key.length);
+}
+function localize(root){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  for(let node;node=walker.nextNode();){
+    if(node.parentElement?.closest('script,style'))continue;
+    if(!originalText.has(node))originalText.set(node,node.nodeValue);
+    node.nodeValue=t(originalText.get(node));
+  }
+  const nodes=[...(root.nodeType===1?[root]:[]),...root.querySelectorAll('[aria-label],[alt],[title]')];
+  for(const el of nodes){
+    if(!originalAttributes.has(el))originalAttributes.set(el,{});
+    const originals=originalAttributes.get(el);
+    for(const attr of ['aria-label','alt','title'])if(el.hasAttribute(attr)){
+      if(!(attr in originals))originals[attr]=el.getAttribute(attr);
+      el.setAttribute(attr,t(originals[attr]));
+    }
+  }
+}
+function syncLanguage(){
+  document.documentElement.lang=language==='en'?'en':'zh-CN';
+  document.documentElement.dataset.language=language;
+  const switcher=document.getElementById('language');
+  switcher.textContent=language==='en'?'中文':'EN';
+  switcher.setAttribute('aria-label',language==='en'?'Switch to Chinese':'切换为英文');
+  document.title=t(document.title);
+  const description=document.querySelector('meta[name="description"]');
+  if(description){if(!description.dataset.original)description.dataset.original=description.content;description.content=t(description.dataset.original);}
+  document.getElementById('theme').setAttribute('aria-label',t(document.documentElement.dataset.theme==='dark'?'切换为浅色主题':'切换为深色主题'));
+  localize(document.querySelector('.site-header'));
+  localize(document.querySelector('.site-footer'));
+  localize(document.querySelector('.skip'));
+  localize(indexPanel);localize(mediaPanel);localize(main);
+}
+
 /* ================= MEDIA MAP =================
    放图方法:把文件放进 assets/<slug>/,然后在下面填相对路径(例 'assets/ifa-2026/hero.jpg')。
    留空 '' = 该素材位自动隐藏/中性显示。hero = 案例页主视觉;evidence 三项对应各案例 evidence 标签顺序。
@@ -111,7 +162,7 @@ function routeFor(hash){
 
 const main=document.getElementById('main');
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const e=escapeHTML;
+const e=s=>escapeHTML(t(s));
 let selected=cases[0].slug;
 const isVideo=src=>/\.(mp4|webm|mov)$/i.test(src);
 function mediaEl(src,label){return isVideo(src)?`<video src="${e(src)}" muted playsinline loop autoplay aria-label="${e(label)}"></video>`:`<img src="${e(src)}" alt="${e(label)}" loading="lazy" onerror="this.closest('[data-fig]')?.remove()">`;}
@@ -251,8 +302,8 @@ const EXTRA = {
   }
 };
 function matrix(m){return `<table class="mx"><thead><tr><th></th>${m.goals.map(g=>`<th scope="col">${e(g)}</th>`).join('')}</tr></thead><tbody>${m.acts.map(([n,mk])=>`<tr><th scope="row">${e(n)}</th>${m.goals.map((_,g)=>`<td><span class="dot ${mk[g]||''}" aria-label="${mk[g]==='p'?'主要':mk[g]==='s'?'次要':'无'}"></span></td>`).join('')}</tr>`).join('')}</tbody><caption><span class="dot p"></span>主要 <span class="dot s"></span>次要</caption></table>`;}
-function pillars(x){return `<div class="pillars">${x.pillars.map((p,n)=>`<div class="pillar"><span class="pn">P${n+1}</span>${p.en?`<h3>${e(p.en)}</h3><p class="pzh">${e(p.zh)}</p>`:`<h3 class="pzh-only">${e(p.zh)}</h3>`}<dl>${p.rows.map(([k,v])=>`<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join('')}</dl></div>`).join('')}</div>${x.support?`<div class="support"><span>跨支柱支撑</span>${x.support.map(t=>`<b>${e(t)}</b>`).join('')}</div>`:''}`;}
-function blk(label,body,cls=''){return `<section class="blk ${cls}"><h2 class="blk-label">${label}</h2><div class="blk-body">${body}</div></section>`;}
+function pillars(x){return `<div class="pillars">${x.pillars.map((p,n)=>`<div class="pillar"><span class="pn">P${n+1}</span>${p.en?`<h3>${e(p.en)}</h3>${language==='en'?'':`<p class="pzh">${e(p.zh)}</p>`}`:`<h3 class="pzh-only">${e(p.zh)}</h3>`}<dl>${p.rows.map(([k,v])=>`<div><dt>${e(k)}</dt><dd>${e(v)}</dd></div>`).join('')}</dl></div>`).join('')}</div>${x.support?`<div class="support"><span>跨支柱支撑</span>${x.support.map(t=>`<b>${e(t)}</b>`).join('')}</div>`:''}`;}
+function blk(label,body,cls=''){return `<section class="blk ${cls}"><h2 class="blk-label">${t(label)}</h2><div class="blk-body">${body}</div></section>`;}
 function detail(c){const i=cases.indexOf(c),prev=cases[(i+cases.length-1)%cases.length],next=cases[(i+1)%cases.length],m=MEDIA[c.slug],x=EXTRA[c.slug];
 const metaLine=[c.brand,c.market,c.period].filter(Boolean).map(x=>`<span class="mi">${e(x)}</span>`).join('<span class="sep">·</span>');
 const gallery=m.gallery.map(g=>fig(g.src,g.cap,g.fit==='contain'?'contain':'')).join('');
@@ -270,18 +321,18 @@ ${(KOL_CASES[c.slug]&&c.slug!=='a1-launch')?blk('04 KOL 案例 Gallery',kolGalle
 /* TODO: LinkedIn 链接、简历 PDF 待用户提供。提供后填入下方常量即自动显示。 */
 const LINKEDIN='', RESUME_PDF='';
 function about(){const row=(d,t,sub)=>`<div class="ab-row"><span>${d}</span><div><b>${t}</b><p>${sub}</p></div></div>`;return `<article class="about-page ab route-enter"><h1 class="about-heading">ABOUT</h1><div class="ab-sec ab-caps"><h2>CAPABILITIES 核心能力</h2>${row('洞察与验证','本地市场洞察与验证','以用户画像、反对意见与转化漏斗形成营销判断 · ES Roadshow、A1 Launch')}${row('整合传播','整合传播与资源协调','围绕共同主题组织渠道、品牌联名与执行资源 · IFA 2026、Project Eternal、Slate × ibis Paint')}${row('用户参与','创意机制与用户参与','设计 UGC 挑战与参与机制 · Project Eternal、Huion × Mucha')}${row('媒体资源','西语媒体与达人资源','主动 pitch El País、El Mundo、La Vanguardia 等西班牙头部媒体')}</div><div class="ab-grid"><div class="ab-left"><div class="about-name">黄靖雯 Davina Huang</div><p class="ab-intro">现任 Insta360 Marketing Specialist，负责海外整合营销：从传播策略到 KOL、PR 与品牌合作的全链路落地。主导过 IFA 2026 展会营销、A1 法国、意大利与西班牙区域上市传播、西班牙四城路演和全球 UGC 挑战 Project Eternal；此前在绘王科技负责西语市场的社媒活动、KOL 与媒体合作。习惯用数据衡量结果，用西语和英语直接对接本地媒体、创作者与合作伙伴。</p><div class="ab-sec" id="contact"><h2>CONTACT 联系</h2><div class="ab-row"><span>EMAIL</span><div><a href="mailto:davina13@163.com">davina13@163.com</a></div></div>${LINKEDIN?`<div class="ab-row"><span>LINKEDIN</span><div><a href="${e(LINKEDIN)}" target="_blank" rel="noopener">${e(LINKEDIN)}</a></div></div>`:''}<div class="ab-row"><span>BASED IN</span><div>深圳</div></div>${RESUME_PDF?`<div class="ab-row" id="resume"><span>RESUME</span><div><a href="${e(RESUME_PDF)}" download>下载 PDF ↓</a></div></div>`:''}</div><div class="ab-sec"><h2>EDUCATION 教育经历</h2>${row('2019.09 — 2023.06','北华大学','西班牙语 本科 · GPA 3.72/5.0')}${row('2021.10 — 2022.07','Universidad Rey Juan Carlos','西班牙语交换项目 · GPA 81/100')}</div></div><div class="ab-right"><div class="ab-sec"><h2>EXPERIENCE 工作经历</h2>${row('2025.08 — 至今','Insta360 · Marketing Specialist','整合营销项目统筹、KOL 内容管理、PR 传播及品牌合作')}${row('2024.07 — 2025.08','绘王科技有限公司 · 品牌营销部 · 海外推广专员','西语市场社媒活动策划与运营、KOL 内容合作、PR 及品牌资源拓展')}${row('2023.03 — 2024.07','深圳市小溪流科技有限公司 · 海外西语运营','海外社媒与社群运营、版本传播及兼职管理员协作')}</div><div class="ab-sec"><h2>LANGUAGES & TOOLS 语言与工具</h2>${row('语言','中文、粤语 · 英语 IELTS 7.0 · 西班牙语 DELE B2','')}${row('工具','Office、Canva、Photoshop、Premiere Pro、AI 辅助工具','')}</div></div></div></article>`;}
-function render(){closePanels();const route=routeFor(location.hash);document.documentElement.dataset.route=route.mode;const c=cases.find(item=>item.slug===route.slug);selected=c.slug;main.innerHTML=route.mode==='project'?detail(c):route.mode==='about'?about():home(c);document.title=route.mode==='project'?`${c.title} — Davina Huang`:route.mode==='about'?'About — Davina Huang':'Davina Huang — 整合营销作品集';document.querySelectorAll('[data-nav]').forEach(a=>{const active=route.mode==='about'?a.dataset.nav===(route.section||'about'):a.dataset.nav==='work';active?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current');});window.scrollTo(0,0);if(route.mode==='about'&&['contact','resume'].includes(route.section))requestAnimationFrame(()=>document.getElementById(route.section)?.scrollIntoView());}
+function render(){closePanels();const route=routeFor(location.hash);document.documentElement.dataset.route=route.mode;const c=cases.find(item=>item.slug===route.slug);selected=c.slug;main.innerHTML=route.mode==='project'?detail(c):route.mode==='about'?about():home(c);document.title=route.mode==='project'?`${c.title} — Davina Huang`:route.mode==='about'?'About — Davina Huang':'Davina Huang — 整合营销作品集';document.querySelectorAll('[data-nav]').forEach(a=>{const active=route.mode==='about'?a.dataset.nav===(route.section||'about'):a.dataset.nav==='work';active?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current');});syncLanguage();window.scrollTo(0,0);if(route.mode==='about'&&['contact','resume'].includes(route.section))requestAnimationFrame(()=>document.getElementById(route.section)?.scrollIntoView());}
 document.querySelector('.skip').addEventListener('click',event=>{event.preventDefault();main.focus();main.scrollIntoView();});
-document.getElementById('theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';document.getElementById('theme').setAttribute('aria-label',dark?'切换为浅色主题':'切换为深色主题');try{localStorage.setItem('davina-theme',dark?'dark':'light')}catch{}});
+document.getElementById('theme').addEventListener('click',()=>{const dark=document.documentElement.dataset.theme!=='dark';document.documentElement.dataset.theme=dark?'dark':'light';document.getElementById('theme').setAttribute('aria-label',t(dark?'切换为浅色主题':'切换为深色主题'));try{localStorage.setItem('davina-theme',dark?'dark':'light')}catch{}});
 try{const saved=localStorage.getItem('davina-theme');if(saved==='dark'){document.documentElement.dataset.theme='dark';document.getElementById('theme').setAttribute('aria-label','切换为浅色主题')}}catch{}
 window.addEventListener('hashchange',render);
 let lastWheel=0,touchStart=null;
 function changeProject(delta){const index=cases.findIndex(c=>c.slug===selected);location.hash=`work/${cases[(index+delta+cases.length)%cases.length].slug}`;}
 const indexPanel=document.getElementById('index-panel'),mediaPanel=document.getElementById('media-panel');
 function closePanels(){indexPanel?.close();mediaPanel?.close();}
-function showIndex(){document.getElementById('index-list').innerHTML=cases.map(c=>`<a href="#work/${c.slug}" class="index-row" ${c.slug===selected?'aria-current="page"':''}><span>${c.number}</span><strong>${e(c.title)}</strong><span>${e(c.subtitle)}</span><b aria-hidden="true">↗</b></a>`).join('');indexPanel.showModal();}
+function showIndex(){document.getElementById('index-list').innerHTML=cases.map(c=>`<a href="#work/${c.slug}" class="index-row" ${c.slug===selected?'aria-current="page"':''}><span>${c.number}</span><strong>${e(c.title)}</strong><span>${e(c.subtitle)}</span><b aria-hidden="true">↗</b></a>`).join('');localize(indexPanel);indexPanel.showModal();}
 let mediaIndex=0;
-function showMedia(index,open=true){const c=cases.find(item=>item.slug===selected),it=mediaItems(c);if(!it.length)return;mediaIndex=(index+it.length)%it.length;const g=it[mediaIndex];document.getElementById('media-content').innerHTML=`<div class="viewer-head"><span>${e(c.title)}</span><span>${e(g.cap)} · ${mediaIndex+1} / ${it.length}</span></div><div class="viewer-media">${mediaEl(g.src,g.cap)}</div>`;if(open)mediaPanel.showModal();}
+function showMedia(index,open=true){const c=cases.find(item=>item.slug===selected),it=mediaItems(c);if(!it.length)return;mediaIndex=(index+it.length)%it.length;const g=it[mediaIndex];document.getElementById('media-content').innerHTML=`<div class="viewer-head"><span>${e(c.title)}</span><span>${e(g.cap)} · ${mediaIndex+1} / ${it.length}</span></div><div class="viewer-media">${mediaEl(g.src,g.cap)}</div>`;localize(mediaPanel);if(open)mediaPanel.showModal();}
 function stepMedia(d){showMedia(mediaIndex+d,false);}
 main.addEventListener('click',event=>{const trigger=event.target.closest('[data-open-index],[data-media],[data-section]');if(!trigger)return;if(trigger.hasAttribute('data-open-index'))showIndex();else if(trigger.hasAttribute('data-media'))showMedia(Number(trigger.dataset.media));else document.getElementById(trigger.dataset.section)?.scrollIntoView({behavior:'smooth'});});
 document.querySelectorAll('[data-close-panel]').forEach(b=>b.addEventListener('click',closePanels));
@@ -292,6 +343,13 @@ window.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.
 window.addEventListener('wheel',event=>{if(routeFor(location.hash).mode!=='work'||innerWidth<=620||indexPanel.open||mediaPanel.open||Math.abs(event.deltaY)<18)return;event.preventDefault();if(Date.now()-lastWheel<800)return;lastWheel=Date.now();changeProject(event.deltaY>0?1:-1);},{passive:false});
 main.addEventListener('touchstart',event=>{if(routeFor(location.hash).mode==='work'&&!indexPanel.open&&!mediaPanel.open)touchStart=[event.touches[0].clientX,event.touches[0].clientY];},{passive:true});
 main.addEventListener('touchend',event=>{if(!touchStart)return;const dx=event.changedTouches[0].clientX-touchStart[0],dy=event.changedTouches[0].clientY-touchStart[1];touchStart=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.3)changeProject(dx<0?1:-1);},{passive:true});
+document.getElementById('language').addEventListener('click',()=>{
+  const position=window.scrollY;language=language==='en'?'zh':'en';
+  try{localStorage.setItem('davina-language',language);}catch{}
+  const url=new URL(location.href);url.searchParams.set('lang',language);history.replaceState(null,'',url);
+  render();window.scrollTo(0,position);
+});
 render();
 
 })();
+
